@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="js/bundle.js"></script>
+  <link rel="stylesheet" href="./css/style.css">
+  <title>Euro Converter</title>
+</head>
+<body>
+
+  <div id="app">
+
+    <input type="number" v-model="amount">
+    <br>
+
+    <label for="currency_select">Select a country: </label>
+    <select id="currency_select" v-model="selectedCurrency">
+      <option disabled value="">Select a country</option>
+      <option v-for="(currencyRate, country) in currencyRates" :value="currencyRate">{{country}}</option>
+    </select>
+
+    <button v-on:click="convertedEuros">Convert to Euros</button>
+    <button v-on:click="convertedOther">Convert from Euros</button>
+    <div v-if="convertedToEuros">
+      <h5>Amount converted to Euros: {{convertedToEuros}} </h5>
+    </div>
+    <div v-if="convertedFromEuros">
+      <h5>Amount converted from Euros: {{convertedFromEuros}} </h5>
+    </div>
+    <p>OR: select a second currency to convert selected to</p>
+    <select id="currency_select" v-model="selectedSecondCurrency">
+      <option disabled value="">Select a country</option>
+      <option v-for="(currencyRate, country) in currencyRates" :value="currencyRate">{{country}}</option>
+    </select>
+    <button v-on:click="convertedBase">Convert to selected currency</button>
+    <br>
+    <div v-if="convertedBaseCurrency">
+      <h5>Converted Amount: {{convertedBaseCurrency}} </h5>
+    </div>
+  </div>
+
+</body>
+</html>
